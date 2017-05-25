@@ -1,4 +1,4 @@
-# ServiceHandler
+# ServiceHelper
 portable .net library for comfortable application managing from outside
 
 It is created in order to easy make own service from your own application
