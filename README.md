@@ -6,7 +6,6 @@ It is created in order to easy make own service from your own application
 USING EXAMPLE:
 
 
-
 C# Code:
             ServiceSocket ss = new ServiceSocket(1983, false);
             ss.OnCommand += (string command) =>
@@ -28,17 +27,19 @@ C# Code:
             ss.Dispose();
             Console.ReadKey();
 
-Test on Linux:
+            
+            
+#Test on Linux:
 
 nc 127.0.0.1 1983
+
 command1
 
 
 
-Bash script for sending command to service:
+#Bash script for sending command to service:
 
 #!/bin/sh
-# Set variables.
 
 case $1 in
     command1) 
