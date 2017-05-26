@@ -7,26 +7,30 @@ USING EXAMPLE:
 
 
 C# Code:
-            ServiceSocket ss = new ServiceSocket(1983, false);
-            ss.OnCommand += (string command) =>
-            {
-                Console.WriteLine("There is new command: {0}", command);
-		switch(command)
-		{
-			case "command1":
-				//some actions
-				break;
-			case "command2":
-				//some actions
-				break;
-		}
-            };
+static void Main(string[] args)
+        {
+            ServiceSocket ss = new ServiceSocket(1983, CommandExecuter, false);
             ss.StartListen();
             Console.ReadKey();
             ss.StopListen();
             ss.Dispose();
             Console.ReadKey();
+        }
 
+        static string CommandExecuter(string command)
+        {
+            Console.WriteLine("There is new command: {0}", command);
+            switch(command)
+            {
+                case "command1":
+                    //some actions
+                    break;
+                case "command2":
+                    //some actions
+                    break;
+            }
+            return command + "is done";
+        }
             
             
 #Test on Linux:
