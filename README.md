@@ -7,6 +7,7 @@ USING EXAMPLE:
 
 
 C# Code:
+```
 static void Main(string[] args)
         {
             ServiceSocket ss = new ServiceSocket(1983, CommandExecuter, false);
@@ -32,19 +33,17 @@ static void Main(string[] args)
             return command + "is done";
         }
             
-            
+```            
 #Test on Linux:
-
+```
 nc 127.0.0.1 1983
-
 command1
-
+```
 
 
 #Bash script for sending command to service:
-
+```
 #!/bin/sh
-
 case $1 in
     command1) 
          mono --debug=mdb-optimizations /home/destructor/Monitor/WatchDog.exe &
@@ -57,7 +56,7 @@ case $1 in
          echo " $0 Unknown argument $1"
          ;;
 esac
-
+```
       //*************************
       
 Feedback and advices for improving send to rombersoft@gmail.com
