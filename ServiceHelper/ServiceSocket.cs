@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace ServiceHelper
 {
+    public delegate string CallBackDelegate(string command);
+
     public class ServiceSocket : IDisposable
     {
-        public event Action<string> OnCommand;
+        public CallBackDelegate CallBack;
 
         private bool _debug;
         //use it if you want to output in console
@@ -24,10 +26,11 @@ namespace ServiceHelper
         /// </summary>
         /// <param name="port">Port for TcpListener</param>
         /// <param name="debug">If set to <c>true</c> output will be in console</param>
-        public ServiceSocket(int port, bool debug)
+        public ServiceSocket(int port, CallBackDelegate callBack, bool debug)
         {
             _port = port;
             _debug = debug;
+            CallBack = callBack;
             _task = new Task(Run);
         }
 
@@ -80,9 +83,11 @@ namespace ServiceHelper
                     string command = builder.ToString().Replace("\n", "").Replace("\r", "");
                     if (_debug)
                         Console.WriteLine("ServiceSocket -> It was gotten command <{0}>", command);
-                    if (OnCommand != null)
-                        OnCommand(command);
-                    byte[] answer = Encoding.ASCII.GetBytes("ok");
+                    byte[] answer;
+                    if (CallBack != null)
+                        answer = Encoding.ASCII.GetBytes(CallBack(command));
+                    else
+                        answer = Encoding.ASCII.GetBytes("Unrecognized command");
                     stream.Write(answer, 0, answer.Length);
                 }
                 catch (ThreadAbortException)
