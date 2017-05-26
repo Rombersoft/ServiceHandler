@@ -3,10 +3,10 @@ portable .net library for comfortable application managing from outside
 
 It is created in order to easy make own service from your own application
 
-USING EXAMPLE:
+##USING EXAMPLE:
 
 
-C# Code:
+###C# Code:
 ```
 static void Main(string[] args)
         {
@@ -34,14 +34,14 @@ static void Main(string[] args)
         }
             
 ```            
-#Test on Linux:
+###Test on Linux:
 ```
 nc 127.0.0.1 1983
 command1
 ```
 
 
-#Bash script for sending command to service:
+###Bash script for sending command to service:
 ```
 #!/bin/sh
 case $1 in
@@ -57,6 +57,5 @@ case $1 in
          ;;
 esac
 ```
-      //*************************
       
 Feedback and advices for improving send to rombersoft@gmail.com
